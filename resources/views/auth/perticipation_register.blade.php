@@ -150,7 +150,7 @@
                                             <select required class="form-select" name="tshirt_size">
                                                 <option value="">{{ trans('misc.t_shirt_size') }}</option>
                                                 @foreach ($t_shirt_size as $size )
-                                                <option value="{{ $size->size_code }}">{{ $size->label }}</option>
+                                                <option value="{{ $size->size_code }}">{{ $size->label }} ({{ $size->size_code }})</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -240,7 +240,7 @@
                                                             name="guest_t_shirt[]">
                                                             <option value="">{{ trans('misc.t_shirt_size') }}</option>
                                                             @foreach ($t_shirt_size as $size )
-                                                            <option value="{{ $size->size_code }}">{{ $size->label }}
+                                                            <option value="{{ $size->size_code }}">{{ $size->label }} ({{ $size->size_code }})
                                                             </option>
                                                             @endforeach
                                                         </select>
@@ -368,7 +368,7 @@
                             <select id="guest_t_shirt_${index}" class="form-select" name="guest_t_shirt[]">
                                 <option value="">{{ trans('misc.t_shirt_size') }}</option>
                                 @foreach ($t_shirt_size as $size )
-                                    <option value="{{ $size->size_code }}">{{ $size->label }}</option>
+                                    <option value="{{ $size->size_code }}">{{ $size->label }} ({{ $size->size_code }})</option>
                                 @endforeach
                             </select>
                         </td>

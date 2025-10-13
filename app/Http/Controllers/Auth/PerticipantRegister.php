@@ -47,7 +47,7 @@ class PerticipantRegister extends Controller
 
         $post_data = array();
         // $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
-        $post_data['total_amount'] = '13'; # You cant not pay less than 10
+        $post_data['total_amount'] = '10'; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = $data['qr_token'];
 
@@ -83,7 +83,7 @@ class PerticipantRegister extends Controller
         try {
 
             $tempPayment = TempPayment::where('session_id', $tran_id)->firstOrFail();
-            // dd($tempPayment);
+
             $data = json_decode($tempPayment->data, true);
             $registration_no = $this->registration_no();
 
@@ -133,7 +133,7 @@ class PerticipantRegister extends Controller
                 'gateway_payload' => json_encode($request->input()),
                 'created_at' => now(),
             ]);
-            // dd(85);
+
             $message = "Successfully registered. Thank you for your participation. Your registration id: " . $registration_no;
 
             Http::asForm()->post('https://portal.adnsms.com/api/v1/secure/send-sms', [
