@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
       'stripe/*',
       'paypal/*',
       'rave/callback',
-      'webhook/*'
+      'webhook/*',
+      '/pay-via-ajax', '/success','/cancel','/fail','/ipn','/registration-success'
     ];
 }

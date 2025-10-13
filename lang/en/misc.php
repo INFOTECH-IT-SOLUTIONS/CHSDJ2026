@@ -286,6 +286,10 @@ return array(
 	'amount_maximum' => 'The maximum amount is :symbol:max :code', // Not remove :symbol:min and :code
 	'featured' => 'Featured',
 	'featured_campaign' => 'Featured Campaign',
+	't_shirt_size' => 'T-Shirt Size',
+	'gender' => 'Gender',
+	'dietary' => 'Dietary',
+
 
 	//<------------ Version 1.8 --------------->>
 	'already_sent_report'  => 'Already sent an report',
@@ -412,6 +416,7 @@ return array(
 	'explore_campaigns' => 'Explore Campaigns',
 	'popular_campaigns' => 'Popular Campaigns',
 	'popular_campaigns_subtitle' => 'Most popular campaigns',
+	'register' => 'Register now',
 
 	//----- Version 4.0
 	'protected_recaptcha' => 'protected by reCAPTCHA',

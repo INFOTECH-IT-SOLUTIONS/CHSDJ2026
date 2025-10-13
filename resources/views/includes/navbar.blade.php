@@ -82,7 +82,7 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" id="switchTheme">
               @if (is_null(request()->cookie('theme')))
-                <i class="bi-moon-stars me-lg-0 me-2"></i> <span class="d-lg-none">{{ __('misc.dark_mode') }}</span> 
+                <i class="bi-moon-stars me-lg-0 me-2"></i> <span class="d-lg-none">{{ __('misc.dark_mode') }}</span>
                 @elseif (request()->cookie('theme') == 'light')
                 <i class="bi-moon-stars me-lg-0 me-2"></i> <span class="d-lg-none">{{ __('misc.dark_mode') }}</span>
                 @elseif (request()->cookie('theme') == 'dark')
@@ -115,7 +115,8 @@
           @endauth
 
           <li class="nav-item">
-            <a class="nav-link btn btn-primary pr-3 pl-3 btn-create no-hover" href="{{ url('create/campaign') }}">{{ trans('misc.create_campaign') }}</a>
+            {{-- <a class="nav-link btn btn-primary pr-3 pl-3 btn-create no-hover" href="{{ url('create/campaign') }}">{{ trans('misc.create_campaign') }}</a> --}}
+            <a class="nav-link btn btn-primary pr-3 pl-3 btn-create no-hover" href="{{ url('perticipant/register') }}">{{ trans('misc.register') }}</a>
           </li>
         </ul>
       </div>
