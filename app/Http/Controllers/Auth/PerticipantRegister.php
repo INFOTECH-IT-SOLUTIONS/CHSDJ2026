@@ -59,9 +59,9 @@ class PerticipantRegister extends Controller
         // $post_data['success_url'] = '/reg-user';
 
         $post_data['shipping_method'] = "NO";
-        $post_data['product_name'] = "Computer";
-        $post_data['product_category'] = "Goods";
-        $post_data['product_profile'] = "physical-goods";
+        $post_data['product_name'] = "Registration";
+        $post_data['product_category'] = "Registration";
+        $post_data['product_profile'] = "Registration";
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
