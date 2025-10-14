@@ -56,9 +56,12 @@ class PerticipantRegister extends Controller
         $post_data['cus_email'] = $request->email;
         $post_data['cus_add1'] = $request->address_line;
         $post_data['cus_phone'] = $request->phone;
+        // $post_data['success_url'] = '/reg-user';
 
-        $post_data['product_name'] = "Participant Registration";
-        $post_data['product_category'] = "Participant Registration";
+        $post_data['shipping_method'] = "NO";
+        $post_data['product_name'] = "Computer";
+        $post_data['product_category'] = "Goods";
+        $post_data['product_profile'] = "physical-goods";
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -73,7 +76,7 @@ class PerticipantRegister extends Controller
 
     public function success(Request $request)
     {
-
+        dd($request->input());
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
@@ -130,7 +133,7 @@ class PerticipantRegister extends Controller
                 'amount' => $amount ?? 0,
                 'currency' => 'BDT',
                 'status' => 'paid',
-                'gateway_payload' => json_encode($request->input()),
+                'gateway_post_data' => json_encode($request->input()),
                 'created_at' => now(),
             ]);
 
