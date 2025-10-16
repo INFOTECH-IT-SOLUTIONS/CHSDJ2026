@@ -106,7 +106,7 @@
             </li><!-- /end list -->
             <li class="nav-item">
                 <a href="{{ url('panel/admin/video-gallery') }}" class="nav-link text-truncate @if (request()->is('panel/admin/video-gallery')) active @endif">
-                    <i class="bi bi-people-fill me-2"></i>
+                    <i class="bi bi-camera-video-fill me-2"></i>
                     Video Gallery 
                 </a>
             </li>
