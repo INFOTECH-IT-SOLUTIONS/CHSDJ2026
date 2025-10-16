@@ -46,8 +46,8 @@ class PerticipantRegister extends Controller
         // dd($tempPayment);
 
         $post_data = array();
-        // $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
-        $post_data['total_amount'] = '10'; # You cant not pay less than 10
+        $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
+        // $post_data['total_amount'] = '10'; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = $data['qr_token'];
 
@@ -76,14 +76,14 @@ class PerticipantRegister extends Controller
 
     public function success(Request $request)
     {
-        dd($request->input());
+        // dd($request->input());
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
 
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-        try {
+        // try {
 
             $tempPayment = TempPayment::where('session_id', $tran_id)->firstOrFail();
 
@@ -133,7 +133,7 @@ class PerticipantRegister extends Controller
                 'amount' => $amount ?? 0,
                 'currency' => 'BDT',
                 'status' => 'paid',
-                'gateway_post_data' => json_encode($request->input()),
+                'gateway_payload' => json_encode($request->input()),
                 'created_at' => now(),
             ]);
 
@@ -153,11 +153,11 @@ class PerticipantRegister extends Controller
             DB::commit();
 
             return view('auth.success-register-message', ['registration_no' => $registration_no]);
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            \Log::error('SSLCommerz Success Error: ' . $e->getMessage());
-            abort(500, 'Something went wrong during registration. Please contact support.');
-        }
+        // } catch (\Throwable $e) {
+        //     DB::rollBack();
+        //     \Log::error('SSLCommerz Success Error: ' . $e->getMessage());
+        //     abort(500, 'Something went wrong during registration. Please contact support.');
+        // }
     }
 
     public function showRegistrationForm()

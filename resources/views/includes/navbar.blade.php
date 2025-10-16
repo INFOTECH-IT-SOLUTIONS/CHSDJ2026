@@ -42,12 +42,25 @@
         <ul class="navbar-nav me-auto">
 
         @foreach (App\Helper::pages('show_navbar') as $_page)
-          <li class="nav-item @if(Request::path() == "page/$_page->slug")active @endif">
-            <a class="nav-link" href="{{ url('p',$_page->slug) }}">{{ $_page->title }}</a>
-          </li>
+            <li class="nav-item @if(Request::path() == "page/$_page->slug")active @endif">
+                <a class="nav-link" href="{{ url('p',$_page->slug) }}">{{ $_page->title }}</a>
+            </li>
           @endforeach
-
-          <li class="nav-item dropdown">
+          <li class="nav-item ">
+                <a class="nav-link" href="{{ url('committee-member') }}">Members</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="{{ url('gallery') }}">{{ trans('misc.gallery') }}</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="{{ url('gallery-video') }}">Video gallary</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="{{ url('notice-board') }}">Notice</a>
+            </li>
+           
+            
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
               {{ trans('misc.explore') }}
             </a>
@@ -60,8 +73,8 @@
                 <a class="dropdown-item @if(Request::path() == "gallery")active @endif" href="{{ url('gallery') }}">{{ trans('misc.gallery') }}</a>
                 @endif
             </div>
-          </li>
-          @if (App\Models\Categories::count() != 0)
+          </li> --}}
+          {{-- @if (App\Models\Categories::count() != 0)
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdownCategories"data-bs-toggle="dropdown" aria-expanded="false">
               {{trans('misc.categories')}}
@@ -78,7 +91,7 @@
               @endif
             </div>
           </li>
-          @endif
+          @endif --}}
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" id="switchTheme">
               @if (is_null(request()->cookie('theme')))

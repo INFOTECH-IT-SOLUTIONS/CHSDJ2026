@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Fahim\PaypalIPN\PaypalIPNListener;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -999,6 +1000,136 @@ class AdminController extends Controller
 	{
 		return view('admin.gallery')->withData(Gallery::all()->sortByDesc('id'));
 	} //<--- End method
+
+    public function notice_board()
+	{
+        $data = DB::table('notice_board')
+            ->where('status', 1)
+            ->get();
+		return view('admin.notice-board',compact('data'));
+	} 
+
+    public function addNotice(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'file' => 'required|max:10240',
+            'date' => 'required|date',
+        ]);
+
+        $fileName = time().'.'.$request->file->extension();
+        $request->file->move(public_path('notice/'), $fileName);
+
+        DB::table('notice_board')->insert([
+            'title' => $request->title,
+            'file' => $fileName,
+            'date' => $request->date,
+            'status' => $request->status,
+        ]);
+
+        return back()->with('success_message', 'Notice added successfully!');
+    }
+
+    public function updateNotice(Request $request, $id)
+    {
+        $data = [
+            'title' => $request->title,
+            'date' => $request->date,
+            'status' => $request->status,
+        ];
+
+        if ($request->hasFile('file')) {
+            $fileName = time().'.'.$request->file->extension();
+            $request->file->move(public_path('notice/'), $fileName);
+            $data['file'] = $fileName;
+        }
+
+        DB::table('notice_board')->where('id', $id)->update($data);
+
+        return back()->with('success_message', 'Notice updated successfully!');
+    }
+
+    public function deleteNotice($id)
+    {
+        DB::table('notice_board')->where('id', $id)->delete();
+        return back()->with('success_message', 'Notice deleted successfully!');
+    }
+    public function committee_member()
+	{
+        $data = DB::table('committee_member')
+            ->where('status', 1)
+            ->get();
+		return view('admin.committee-member',compact('data'));
+	} 
+    public function committee_member_add(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'file' => 'required|max:10240',
+            'date' => 'required|date',
+        ]);
+
+        $fileName = time().'.'.$request->file->extension();
+        $request->file->move(public_path('commitee_members/'), $fileName);
+
+        DB::table('committee_member')->insert([
+            'title' => $request->title,
+            'file' => $fileName,
+            'date' => $request->date,
+            'status' => $request->status,
+        ]);
+
+        return back()->with('success_message', 'Notice added successfully!');
+    }
+
+    public function committee_member_update(Request $request, $id)
+    {
+        $data = [
+            'title' => $request->title,
+            'date' => $request->date,
+            'status' => $request->status,
+        ];
+
+        if ($request->hasFile('file')) {
+            $fileName = time().'.'.$request->file->extension();
+            $request->file->move(public_path('commitee_members/'), $fileName);
+            $data['file'] = $fileName;
+        }
+
+        DB::table('committee_member')->where('id', $id)->update($data);
+
+        return back()->with('success_message', 'Notice updated successfully!');
+    }
+
+    public function committee_member_delete($id)
+    {
+        DB::table('committee_member')->where('id', $id)->delete();
+        return back()->with('success_message', 'Notice deleted successfully!');
+    }
+
+    public function video_gallery()
+	{
+        $data = DB::table('video_gallery')
+            ->where('status', 1)
+            ->get();
+		return view('admin.video-gallery',compact('data'));
+	} 
+
+    public function video_gallery_add(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'video_link' => 'required|max:10240',
+        ]);
+
+        DB::table('video_gallery')->insert([
+            'title' => $request->title,
+            'video_link' => $request->video_link,
+            'status' => $request->status,
+        ]);
+
+        return back()->with('success_message', 'Video added successfully!');
+    }
 
 	public function addGallery(Request $request)
 	{

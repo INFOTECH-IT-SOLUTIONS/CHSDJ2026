@@ -76,6 +76,7 @@
                   <i class="bi-chevron-right fs-7 me-1"></i> {{ trans('admin.limits') }}
                   </a>
                 </li>
+                
               </div><!-- /end collapse settings -->
 
               <li class="nav-item">
@@ -90,6 +91,25 @@
                        {{ __('misc.gallery') }}
                   </a>
               </li><!-- /end list -->
+
+              <li class="nav-item">
+                <a href="{{ url('panel/admin/notice-board') }}" class="nav-link text-truncate @if (request()->is('panel/admin/notice-board')) active @endif">
+                    <i class="bi bi-megaphone-fill me-2"></i>
+                     Notice board
+                </a>
+            </li><!-- /end list -->
+            <li class="nav-item">
+                <a href="{{ url('panel/admin/committee-member') }}" class="nav-link text-truncate @if (request()->is('panel/admin/committee-member')) active @endif">
+                    <i class="bi bi-people-fill me-2"></i>
+                    Committee Members
+                </a>
+            </li><!-- /end list -->
+            <li class="nav-item">
+                <a href="{{ url('panel/admin/video-gallery') }}" class="nav-link text-truncate @if (request()->is('panel/admin/video-gallery')) active @endif">
+                    <i class="bi bi-people-fill me-2"></i>
+                    Video Gallery 
+                </a>
+            </li>
 
               <li class="nav-item">
                   <a href="{{ url('panel/admin/blog') }}" class="nav-link text-truncate @if (request()->is('panel/admin/blog')) active @endif">

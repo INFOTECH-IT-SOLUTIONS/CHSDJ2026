@@ -322,6 +322,22 @@ Route::group(['middleware' => 'role'], function () {
     Route::get('panel/admin/theme', 'AdminController@theme');
     Route::post('panel/admin/theme', 'AdminController@themeStore');
     Route::get('panel/admin/gallery', 'AdminController@gallery');
+    Route::get('panel/admin/notice-board', 'AdminController@notice_board');
+    Route::post('panel/admin/notice/add', 'AdminController@addNotice');
+    Route::post('panel/admin/notice/update/{id}', 'AdminController@updateNotice');
+    Route::post('panel/admin/notice/delete/{id}', 'AdminController@deleteNotice');
+
+    Route::get('panel/admin/committee-member', 'AdminController@committee_member');
+    Route::post('panel/admin/committee-member/add', 'AdminController@committee_member_add');
+    Route::post('panel/admin/committee-member/update/{id}', 'AdminController@committee_member_update');
+    Route::post('panel/admin/committee-member/delete/{id}', 'AdminController@committee_member_delete');
+    
+    Route::get('panel/admin/video-gallery', 'AdminController@video_gallery');
+    Route::post('panel/admin/video-gallery/add', 'AdminController@video_gallery_add');
+    Route::post('panel/admin/video-gallery/update/{id}', 'AdminController@video_gallery_update');
+    Route::post('panel/admin/video-gallery/delete/{id}', 'AdminController@video_gallery_delete');
+   
+
     Route::post('panel/admin/gallery/add', 'AdminController@addGallery');
     Route::post('panel/admin/gallery/delete/{id}', 'AdminController@deleteGallery');
     Route::view('panel/admin/payment/add', 'admin.add-payment');
@@ -461,6 +477,9 @@ Route::get("donation/pending/{id}", function ($id) {
 });
 
 Route::get('gallery', 'HomeController@gallery');
+Route::get('gallery-video', 'HomeController@video_gallery');
+Route::get('committee-member', 'HomeController@committee_member');
+Route::get('notice-board', 'HomeController@notice_board');
 Route::get('blog', 'BlogController@blog');
 Route::get('blog/post/{id}/{slug?}', 'BlogController@post');
 
