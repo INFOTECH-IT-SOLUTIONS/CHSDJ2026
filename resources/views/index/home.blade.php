@@ -18,7 +18,7 @@
                     {{-- <p class="vivify fadeInRight"><a class="btn btn-lg btn-primary"
                             href="{{ url('campaigns/latest') }}" role="button">{{ __('misc.explore_campaigns') }}</a>
                     </p> --}}
-                    <p class="vivify fadeInRight"><a class="btn btn-lg btn-primary" href="{{ url('campaigns/latest') }}"
+                    <p class="vivify fadeInRight"><a class="btn btn-lg btn-primary" href="{{ url('perticipant/register') }}"
                             role="button">{{ __('misc.register') }}</a></p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     {{-- <p class="vivify fadeInLeft"><a class="btn btn-lg btn-primary"
                             href="{{ url('campaigns/latest') }}" role="button">{{ __('misc.explore_campaigns') }}</a>
                     </p> --}}
-                    <p class="vivify fadeInLeft"><a class="btn btn-lg btn-primary" href="{{ url('campaigns/latest') }}"
+                    <p class="vivify fadeInLeft"><a class="btn btn-lg btn-primary" href="{{ url('perticipant/register') }}"
                             role="button">{{ __('misc.register') }}</a></p>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     {{-- <p class="vivify fadeInRight"><a class="btn btn-lg btn-primary"
                             href="{{ url('campaigns/latest') }}" role="button">{{ __('misc.explore_campaigns') }}</a>
                     </p> --}}
-                    <p class="vivify fadeInRight"><a class="btn btn-lg btn-primary" href="{{ url('campaigns/latest') }}"
+                    <p class="vivify fadeInRight"><a class="btn btn-lg btn-primary" href="{{ url('perticipant/register') }}"
                             role="button">{{ __('misc.register') }}</a></p>
                 </div>
             </div>
@@ -133,7 +133,7 @@
 
     @if ($data->total() > $settings->result_request)
     <div class="btn-block text-center py-3">
-        <a href="{{ url('campaigns/latest') }}" class="btn btn-primary btn-main p-2 px-5 btn-lg rounded">
+        <a href="{{ url('perticipant/register') }}" class="btn btn-primary btn-main p-2 px-5 btn-lg rounded">
             {{ __('misc.view_all') }} <small class="pl-1"><i class="fa fa-long-arrow-alt-right"></i></small>
         </a>
     </div>
@@ -193,7 +193,9 @@
         <h3 class="my-3">
             {{ __('misc.no_campaigns') }}
         </h3>
-        <a class="btn btn-primary p-2 px-5 btn-lg" href="{{url('create/campaign')}}"
+        {{-- <a class="btn btn-primary p-2 px-5 btn-lg" href="{{url('create/campaign')}}" 
+            role="button">{{__('misc.create_campaign')}}</a> --}}
+        <a class="btn btn-primary p-2 px-5 btn-lg" href="{{url('perticipant/register')}}"
             role="button">{{__('misc.create_campaign')}}</a>
     </div>
 </div>
@@ -204,7 +206,7 @@
     <div class="container position-relative">
         <h1>{{__('misc.title_cover_bottom')}}</h1>
         <p>{{$settings->welcome_subtitle}}</p>
-        <p><a class="btn btn-primary p-2 px-5 btn-lg" href="{{url('create/campaign')}}"
+        <p><a class="btn btn-primary p-2 px-5 btn-lg" href="{{url('perticipant/register')}}"
                 role="button">{{__('misc.create_campaign')}}</a></p>
     </div>
 </div>

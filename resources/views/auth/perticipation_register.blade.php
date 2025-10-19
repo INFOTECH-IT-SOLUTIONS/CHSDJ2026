@@ -100,7 +100,7 @@
                                             <select required class="form-select" id="batch_year" name="batch_year">
                                                 <option value="">Batch year</option>
                                                 @foreach ($batch_year as $batch )
-                                                <option data-year="{{ $batch->year }}" value="{{ $batch->batch_id }}">{{
+                                                <option data-year="{{ $batch->year }}" value="{{ $batch->year }}">{{
                                                     $batch->title }}</option>
                                                 @endforeach
                                             </select>
@@ -215,43 +215,49 @@
                                                 id="customControlInline" value="1">
                                         </div>
                                     </div>
-                                    <div class="col-md-12 row" id="guest_area">
-                                        <table class="table table-bordered table-hover">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width:40%">
-                                                        <input type="text" class="form-control"
-                                                            value="{{ old('guest_name') }}" name="guest_name[]"
-                                                            placeholder="Guest Name" title="">
-                                                    </td>
-                                                    <td style="width:30%">
-                                                        <select onchange="calculateGuest(0)" id="guest_package_0"
-                                                            required class="form-select guest_package"
-                                                            name="guest_package[]">
-                                                            @foreach ($packages as $package)
-                                                            <option data-price="{{ $package->price }}"
-                                                                value="{{ $package->package_id }}">{{ $package->name }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td style="width:30%">
-                                                        <select id="guest_t_shirt_0" class="form-select"
-                                                            name="guest_t_shirt[]">
-                                                            <option value="">{{ trans('misc.t_shirt_size') }}</option>
-                                                            @foreach ($t_shirt_size as $size )
-                                                            <option value="{{ $size->size_code }}">{{ $size->label }} ({{ $size->size_code }})
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <button id="addGuest" class="btn btn-success" type="button"><i
-                                                                class="fa fa-plus"></i></button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-md-12" id="guest_area">
+                                        <div class="row align-items-end mb-2 guest-row">
+                                            <!-- Guest Name -->
+                                            <div class="col-12 col-md-4 mb-2 mb-md-0">
+                                                <input type="text" class="form-control" name="guest_name[]" value="{{ old('guest_name') }}"
+                                                    placeholder="Guest Name" title="">
+                                            </div>
+
+                                            <!-- Guest Package -->
+                                            <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                                <select onchange="calculateGuest(0)" id="guest_package_0"
+                                                    required class="form-select guest_package" name="guest_package[]">
+                                                    @foreach ($packages as $package)
+                                                    <option data-price="{{ $package->price }}" value="{{ $package->package_id }}">
+                                                        {{ $package->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <!-- T-Shirt Size -->
+                                            <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                                <select id="guest_t_shirt_0" class="form-select" name="guest_t_shirt[]">
+                                                    <option value="">{{ trans('misc.t_shirt_size') }}</option>
+                                                    @foreach ($t_shirt_size as $size)
+                                                    <option value="{{ $size->size_code }}">
+                                                        {{ $size->label }} ({{ $size->size_code }})
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <!-- Add Button -->
+
+                                        </div>
+                                    </div>
+                                    <div class="col-8 text-md-start text-center">
+
+                                    </div>
+                                    <div class="col-4 col-md-2 text-md-start text-center">
+                                        <button id="addGuest" class="btn btn-success w-100 w-md-auto" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -306,12 +312,15 @@
 @section('javascript')
 <script>
     $('#guest_area').hide();
+    $('#addGuest').hide();
     $('#guest_yn').on('change', function() {
         if ($(this).is(':checked')) {
             $('#guest_area').show();
+            $('#addGuest').show();
             calculateGuest(0);
         } else {
             $('#guest_area').hide();
+            $('#addGuest').hide();
             calculateGuest(0);
         }
     })
@@ -352,31 +361,43 @@
     var index = 0;
     $('#addGuest').on('click', function() {
         index++;
-        var html = `<tr>
-                        <td>
-                            <input type="text" class="form-control" required value="" name="guest_name[]"
-                                placeholder="Guest Name" title="">
-                        </td>
-                        <td>
-                            <select onchange="calculateGuest(${index})" id="guest_package_${index}" required class="form-select guest_package" name="guest_package[]">
+        var html = `<div class="row align-items-end mb-2 guest-row">
+                        <!-- Guest Name -->
+                        <div class="col-12 col-md-4 mb-2 mb-md-0">
+                            <input type="text" class="form-control" required name="guest_name[]" placeholder="Guest Name" title="">
+                        </div>
+
+                        <!-- Guest Package -->
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <select onchange="calculateGuest(${index})" id="guest_package_${index}" required
+                                class="form-select guest_package" name="guest_package[]">
                                 @foreach ($packages as $package)
-                                    <option data-price="{{ $package->price }}" value="{{ $package->package_id }}"> {{ $package->name }} </option>
+                                <option data-price="{{ $package->price }}" value="{{ $package->package_id }}">
+                                    {{ $package->name }}
+                                </option>
                                 @endforeach
                             </select>
-                        </td>
-                        <td >
+                        </div>
+
+                        <!-- T-Shirt Size -->
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <select id="guest_t_shirt_${index}" class="form-select" name="guest_t_shirt[]">
                                 <option value="">{{ trans('misc.t_shirt_size') }}</option>
-                                @foreach ($t_shirt_size as $size )
-                                    <option value="{{ $size->size_code }}">{{ $size->label }} ({{ $size->size_code }})</option>
+                                @foreach ($t_shirt_size as $size)
+                                <option value="{{ $size->size_code }}">{{ $size->label }} ({{ $size->size_code }})</option>
                                 @endforeach
                             </select>
-                        </td>
-                        <td>
-                            <button id="removeGuest" class="btn btn-danger" type="button"><i class="fa fa-times"></i></button>
-                        </td>
-                    </tr>`;
-        $('#guest_area table tbody').append(html);
+                        </div>
+
+                        <!-- Remove Button -->
+                        <div class="col-12 col-md-2 text-md-start text-center">
+                            <button id="removeGuest" class="btn btn-danger w-100 w-md-auto" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    `;
+        $('#guest_area').append(html);
         calculateGuest(index);
     })
 

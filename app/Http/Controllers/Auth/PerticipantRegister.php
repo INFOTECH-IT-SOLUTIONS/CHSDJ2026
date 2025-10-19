@@ -92,6 +92,7 @@ class PerticipantRegister extends Controller
 
             $participant_id = DB::table('participant')->insertGetId([
                 'first_name' => $data['name'],
+                'batch_year' => $data['batch_year'],
                 'email' => $data['email'],
                 'phone' => $data['phone'],
                 'address_line' => $data['address_line'],
