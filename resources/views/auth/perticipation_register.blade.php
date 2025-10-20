@@ -78,23 +78,28 @@
                             <div class="col-md-9">
                                 <div class="row">
                                     <div class="form-group col-md-6">
+                                        <label for="name">Name <span style="color: red">*</span></label>
                                         <div class="input-group">
+
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" required value="{{ old('name') }}"
                                                 name="name" placeholder="{{ trans('auth.full_name') }}"
                                                 title="{{ trans('users.full_name') }}">
+
                                         </div>
                                     </div>
 
                                     <div class="form-group col-md-6">
+                                        <label for="name">Email </label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                            <input type="email" class="form-control" required value="{{ old('email') }}"
+                                            <input type="email" class="form-control" value="{{ old('email') }}"
                                                 name="email" placeholder="{{ trans('auth.email') }}"
                                                 title="{{ trans('auth.email') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
+                                        <label for="name">Batch <span style="color: red">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-seedling"></i></span>
                                             <select required class="form-select" id="batch_year" name="batch_year">
@@ -107,6 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label for="name">Phone <span style="color: red">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-phone"></i></span>
                                             <input type="text" class="form-control" required value="{{ old('phone') }}"
@@ -114,6 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label for="name">Gender <span style="color: red">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                             <select required class="form-select" name="gender">
@@ -125,9 +132,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label for="name">Blood Group </label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-heartbeat"></i></span>
-                                            <select required class="form-select" name="blood_group">
+                                            <select class="form-select" name="blood_group">
                                                 <option value="">Blood group</option>
                                                 @foreach ($blood_group as $blood )
                                                 <option value="{{ $blood->blood_group_id }}">{{ $blood->group_name }}
@@ -137,14 +145,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label for="name">Religion </label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-place-of-worship"></i></span>
-                                            <input type="text" class="form-control" required
+                                            <input type="text" class="form-control"
                                                 value="{{ old('religion') }}" name="religion" placeholder="Religion"
                                                 title="">
                                         </div>
                                     </div>
                                     <div class=" form-group col-md-4">
+                                        <label for="name">T-Shirt Size <span style="color: red">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-tshirt"></i></span>
                                             <select required class="form-select" name="tshirt_size">
@@ -157,9 +167,10 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
+                                        <label for="name">Dietary</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-seedling"></i></span>
-                                            <select required class="form-select" name="dietary">
+                                            <select class="form-select" name="dietary">
                                                 <option value="">{{ trans('misc.dietary') }}</option>
                                                 @foreach ($t_ref_dietary as $dietary )
                                                 <option value="{{ $dietary->dietary_code }}">{{ $dietary->label }}
@@ -171,30 +182,34 @@
 
 
                                     <div class="form-group col-md-4">
+                                        <label for="name">NID</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-id-card"></i></span>
-                                            <input type="text" class="form-control" required value="{{ old('nid') }}"
+                                            <input type="text" class="form-control" value="{{ old('nid') }}"
                                                 name="nid" placeholder="NID" title="">
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label for="name">Occupation</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
-                                            <input type="text" class="form-control" required
+                                            <input type="text" class="form-control"
                                                 value="{{ old('occupation') }}" name="occupation"
                                                 placeholder="Occupation" title="">
                                         </div>
                                     </div>
 
                                     <div class=" form-group col-md-8">
+                                        <label for="name">Address</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-address-book"></i></span>
-                                            <input type="text" class="form-control" required
+                                            <input type="text" class="form-control"
                                                 value="{{ old('address_line') }}" name="address_line"
                                                 placeholder="Address" title="">
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label for="name">Photo</label>
                                         <div class="input-group">
                                             <div class="file-upload">
                                                 <label for="fileInput">Choose Photo</label>
@@ -410,7 +425,6 @@
 
         var year = $(this).find(':selected').data('year');
 
-        console.log(year);
         if(yearInclude.includes(year)){
             $('#registration_amount').html('500');
             $('#registration_amount_hidden').val('500');
@@ -418,6 +432,8 @@
             $('#registration_amount').html('1000');
             $('#registration_amount_hidden').val('1000');
         }
+
+        calculateGuest(0);
 
     });
 

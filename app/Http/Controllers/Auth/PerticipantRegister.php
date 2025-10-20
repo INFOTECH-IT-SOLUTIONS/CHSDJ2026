@@ -39,10 +39,14 @@ class PerticipantRegister extends Controller
 
         $data['photo_url'] = $photoUrl;
         $data['qr_token'] = uniqid();
+
         $tempPayment = DB::table('temp_payments')->insert([
             'session_id' => $data['qr_token'],
             'data' => json_encode($data),
         ]);
+
+        $cus_email = $request->email ? $request->email : 'infotechitsolutionsbd25@gmail.com';
+
         // dd($tempPayment);
 
         $post_data = array();
@@ -52,9 +56,10 @@ class PerticipantRegister extends Controller
         $post_data['tran_id'] = $data['qr_token'];
 
         # CUSTOMER INFORMATION
+        // dd($cus_email);
         $post_data['cus_name'] = $request->name;
-        $post_data['cus_email'] = $request->email;
-        $post_data['cus_add1'] = $request->address_line;
+        $post_data['cus_email'] = $cus_email;
+        $post_data['cus_add1'] = $request->address_line ?? "";
         $post_data['cus_phone'] = $request->phone;
         // $post_data['success_url'] = '/reg-user';
 
